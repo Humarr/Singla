@@ -1,7 +1,6 @@
 # Singla
-A social app for single parents
+# A social app for single parents
 
-This is a UI for the proposed application.
 
 Single parents can create their account and login to see updates from like people from all over the world.
 
