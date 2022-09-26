@@ -1,0 +1,325 @@
+
+<Options>
+    # MDBoxLayout:
+    orientation: "horizontal"
+    radius: 10,10, 10, 10
+    md_bg_color: "lightblue"
+    size_hint_y: .15
+    size_hint_x: .8
+    pos_hint: {'center_x': .52}
+    y: "20dp"
+    spacing: "10dp"
+    MDIconButton:
+        icon: 'heart-outline'
+    MDIconButton:
+        icon: 'thumb-up'
+    MDIconButton:
+        icon: 'help'
+    MDIconButton:
+        icon: 'send'
+
+
+<ChatsCard>
+    id: chat_card
+    size_hint: self.width, None
+    height: "60dp"
+    elevation: 4
+    orientation: "vertical"
+    # adaptive_height: True
+    md_bg_color: "white"
+    spacing: '10dp'
+    radius: [10,]
+    text: root.name
+    secondary_text: root.last_msg
+    theme_text_color: "Custom"
+    text_color: "black"
+    secondary_theme_text_color: "Custom"
+    secondary_text_color: "darkgrey"
+    divider: None
+    on_press:
+        app.update_name(root.name)
+        app.wm.current = "chat_screen"
+    # BoxLayout:
+    #     orientation:'horizontal'
+    ImageLeftWidget:
+        source: root.image
+
+        # size_hint: .85, .5
+        # pos_hint: {'center_x': 0.5,'center_y':.85}
+        # size: self.size
+        # height: self.height
+        # width: root.width
+
+
+<Feeds>
+    size_hint_y: None
+    height: "270dp"
+    radius: [10,]
+    size_hint_x: None
+    width: "280dp"
+    elevation: 10
+    md_bg_color: "white"
+    style: "outlined"
+    line_color:"black"
+    # on_press: print("print")
+    # Options:
+
+
+
+    MDLabel:
+        text: root.name
+        font_style: "H6"
+        theme_text_color: "Custom"
+        text_color: darkblue
+        pos_hint: {'center_x': .72, "center_y": .89}
+        size_hint_x: .85
+    MDLabel:
+        text: root.date_time
+        font_style: "Caption"
+        theme_text_color: "Custom"
+        text_color: "darkblue"
+        pos_hint: {'center_x': .72, "center_y": .82}
+        size_hint_x: .85
+    MDCard:
+        id: card
+        radius: 65
+        md_bg_color: "grey"
+        pos_hint: {"center_x": .15, "top": .98}
+        size_hint: .24, .24
+
+        FitImage:
+            source: root.pic
+            size_hint: None, None
+            size: card.size
+            radius: 50, 50, 50, 50
+
+    MDLabel:
+        text: root.text
+        markup: True
+        font_style: "Body2"
+        theme_text_color: "Custom"
+        text_color: "black"
+        halign: "left"
+        pos_hint: {'center_x': .52, "center_y": .5}
+        size_hint_x: .8
+
+
+
+
+
+<HomeScreen>
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: "10dp"
+        MDTopAppBar:
+            title: "Hi, Umar"
+            pos_hint: {'top':1}
+            anchor_title:"left"
+            # right_action_items: [["dots-vertical", lambda x: x]]
+            left_action_items: [["logout", lambda x: root.logout()]]
+            md_bg_color: darkblue
+        MDBottomNavigation:
+            id: nav
+            panel_color: darkblue
+            text_color_active: "orange"
+            font_name: "Roboto-Bold"
+            font_Size: "20sp"
+            text_color_normal: "grey"
+            selected_color_background: "white"
+            # first_widget: nav4
+            # radius: [35]
+
+
+            # Add a NavigationItem for each Navigation.
+            MDBottomNavigationItem:
+                name: "screen 1"
+                text: "Feeds"
+                icon: "newspaper"
+                # Add Contents here
+                MDBoxLayout:
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    # size_hint_y:.7
+                    # adaptive_height: True
+                    orientation: "vertical"
+                    spacing: '12dp'
+                    padding: ('42dp', '16dp', '12dp', '12dp')
+                    md_bg_color: "white"
+                    MDTextField:
+                        hint_text: "Search"
+                        hint_text_color_focus: darkblue
+                        hint_text_color_normal: darkblue
+                        text_color_focus: darkblue
+                        text_color_normal: darkblue
+                        mode: "fill"
+                        line_color_normal: darkblue
+                        line_color_focus: darkblue
+                        size_hint_x: .85
+                        icon_right: "magnify"
+                        icon_right_color_normal: darkblue
+                        icon_right_color_focus: darkblue
+                        active_line: False
+                        radius: [15,]
+                        pos_hint: {'center_x': 0.5,'center_y': 0.95}
+                    ScrollView:
+                        do_scroll_y: True
+                        do_scroll_x: False
+                        md_bg_color: "white"
+                        bar_width: "4sp"
+                        MDList:
+                            id: container
+                            # spacing: "13dp"
+                            spacing: "24dp"
+                            # padding: "5dp"
+                            Feeds:
+                                text: "[b]I Wish I Had Learned . . .[/b]\nJim Edwards I wish I had learned that I can do anything I really believe I can do. It may sound simple, but it’s the basis of any and all achievement (or lack thereof) in anyone’s life."
+                                pic: "assets/img/pic.png"
+                                name: "Umar"
+                                date_time: "1 jan. 2004 8:15pm"
+                            Feeds:
+                                text: " Sure, it sounds obvious, but until you live it, breath it, and make it a part of who you are as a person, you’ll just keep getting what you’ve gotten in the past, which I’ll bet isn’t what you want."
+                                pic: "assets/img/pic3.jpg"
+                                name: "Nice Guy"
+                                date_time: "17 sep. 2022 11:05pm"
+                            # Feeds:
+                            #     text: "police"
+                            #     pic: "assets/img/pic.png"
+                            # Feeds:
+                            #     text: "police"
+                            #     pic: "assets/img/hamza.png"
+                            #     name: "Hamza"
+                            #     date_time:"14 aug. 2022 3:30am"
+
+            MDBottomNavigationItem:
+                name: "screen 2"
+                text: "messages"
+                icon: "message"
+                badge_icon: "numeric-10"
+                # Add Contents here
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    # padding: "12dp","16dp", "7dp", "5dp"
+                    spacing: "24dp"
+
+                    ScrollView:
+                        do_scroll_y: True
+                        do_scroll_x: False
+                        # size_hint_y: .9
+                        # pos_hint: {'center_x': 0.5,'center_y':.3}
+                        bar_width: 2
+                        MDList:
+                            id: chats_box
+                            padding:"24dp"
+                            spacing: '12dp'
+                            ChatsCard:
+                                image: "assets/img/pic3.jpg"
+                                name: "James Rendall"
+                                last_msg: "I dey go there"
+                            ChatsCard:
+                                image: "assets/img/pic3.jpg"
+                                name: "Jamal"
+                                last_msg: "I dey go there"
+                            ChatsCard:
+                                image: "assets/img/pic3.jpg"
+                                name: " cool"
+                                last_msg: "I dey go there"
+
+            MDBottomNavigationItem:
+                name: "screen 3"
+                text: ""
+                icon: "blank"
+                # Add Contents here
+            MDBottomNavigationItem:
+                id: nav4
+                name: "screen 4"
+                text: "Settings"
+                icon: "cog"
+                badge_icon: "numeric-1"
+                # Add Contents here
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    # padding: "12dp","16dp", "7dp", "5dp"
+                    spacing: "24dp"
+
+                    ScrollView:
+                        do_scroll_y: True
+                        do_scroll_x: False
+                        bar_width: 2
+                        MDList:
+                            spacing: "10dp"
+                            # size_hint_x: .8
+                            MDLabel:
+                                text: "Theme"
+                                pos_hint: {"top":.9}
+                                bold: True
+
+                            TwoLineAvatarIconListItem:
+                                text: "theme"
+                                secondary_text: "light"
+                                ripple_scale: 0
+                                IconLeftWidgetWithoutTouch:
+                                    icon:"cog"
+                                MDSwitch:
+                                    pos_hint: {"right": .9}
+                                    active: True
+                                    icon_active: "check"
+                                    icon_inactive: "close"
+                                    icon_active_color: "green"
+                                    icon_inactive_color: "red"
+                                    thumb_color_active: "white"
+                                    thumb_color_inactive: "white"
+                                    track_color_inactive: "red"
+                                    track_color_active: "green"
+
+
+    MDFloatingActionButton:
+        icon: "pencil"
+        icon_size: "50sp"
+        md_bg_color: "orange"
+        theme_icon_color: "Custom"
+        icon_color: darkblue
+        pos_hint: {"center_x":.65}
+        y: "24dp"
+        size_hint_x: .2
+        size_hint_y: .1
+        elevation: 20
+        on_press: app.show_sheet()
+
+<CustomSheet@MDScreen>
+    orientation: "vertical"
+    size_hint_y: None
+    height: "500dp"
+    radius: 30
+    radius_from: "top-left"
+    # image: ""
+    # rate: ""
+    # price: ""
+    padding: "8dp"
+    spacing: '4dp'
+
+    Image:
+        source:"assets/img/logo.png"
+        pos_hint: {'center_x': 0.5,'center_y': 0.85}
+    MDTextField:
+        id: post
+        hint_text: "What's on your mind?"
+        hint_text_color_focus: darkblue
+        hint_text_color_normal: darkblue
+        text_color_focus: darkblue
+        text_color_normal: darkblue
+        # mode: "fill"
+        line_color_normal: darkblue
+        line_color_focus: darkblue
+        size_hint_x: .85
+        size_hint_y: None
+        max_height: '180dp'
+        multiline: True
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+    MDFillRoundFlatButton:
+        text: "Let's make this public!"
+        pos_hint: {'center_x': 0.5,'center_y': 0.15}
+        size_hint_y: .09
+        size_hint_x: .8
+        md_bg_color: darkblue
+        font_style: "Button"
+        on_press: app.publish(post.text)

@@ -1,0 +1,63 @@
+# : import InputField uix.inputfield.InputField
+<LoginScreen>
+    Image:
+        source:"assets/img/logo.png"
+        pos_hint: {'center_x': 0.5,'center_y': 0.65}
+    MDTextField:
+        hint_text: "Email"
+        hint_text_color_focus: darkblue
+        hint_text_color_normal: darkblue
+        text_color_focus: darkblue
+        text_color_normal: darkblue
+        mode: "fill"
+        line_color_normal: darkblue
+        line_color_focus: darkblue
+        size_hint_x: .85
+        icon_right: "email"
+        icon_right_color_normal: darkblue
+        icon_right_color_focus: darkblue
+        pos_hint: {'center_x': 0.5,'center_y': 0.4}
+        focus: True
+        on_text_validate: password.focus = True
+    MDTextField:
+        id: password
+        hint_text: "password"
+        hint_text_color_focus: darkblue
+        hint_text_color_normal: darkblue
+        text_color_focus: darkblue
+        text_color_normal: darkblue
+        mode: "fill"
+        line_color_normal: darkblue
+        line_color_focus: darkblue
+        size_hint_x: .85
+        # icon_right: "key"
+        # icon_right_color_normal: darkblue
+        # icon_right_color_focus: darkblue
+        password: True
+        pos_hint: {'center_x': 0.5,'center_y': 0.3}
+    MDIconButton:
+        icon:"eye"
+        pos_hint: {'center_x': 0.852,'center_y': 0.3}
+        theme_icon_color: "Custom"
+        icon_color: darkblue
+        on_press:
+            password.password = False if password.password is True else True
+            self.icon = "eye" if self.icon == "eye-off" else 'eye-off'
+
+    MDFillRoundFlatButton:
+        text: "Join the other single parents!"
+        pos_hint: {'center_x': 0.5,'center_y': 0.2}
+        size_hint_y: .06
+        size_hint_x: .8
+        md_bg_color: darkblue
+        font_style: "Button"
+        on_press: root.manager.current = "home_screen"
+    MDFlatButton:
+        text: "Not Part of the family? [u]Join Now![/u]"
+        markup: True
+        pos_hint: {'center_x': 0.5,'center_y': 0.1}
+        size_hint_y: .06
+        size_hint_x: .8
+        # md_bg_color: darkblue
+        font_style: "Body2"
+        on_press: root.manager.current = "signup_screen"

@@ -1,0 +1,149 @@
+
+<SentMessage>
+    size_hint_y: None
+    pos_hint: {'right': .98}
+    height: self.texture_size[1]
+    padding: 12, 10
+    theme_text_color: 'Custom'
+    text_color: 'white'
+    text: root.message
+    size_hint_x: root.size_hint_x
+    halign: root.halign
+
+    canvas.before:
+        Color:
+            rgb: (34/255, 0, 63/255, 1)
+        RoundedRectangle:
+            size: self.width, self.height
+            pos: self.pos
+            radius: [22,0,22,22]
+
+
+
+<ReceivedMessage>
+    size_hint_y: None
+    pos_hint: {'x': .02}
+    height: self.texture_size[1]
+    padding: 12, 10
+    theme_text_color: 'Custom'
+    text_color: 'white'
+    text: root.message
+    size_hint_x: root.size_hint_x
+    halign: root.halign
+
+    canvas.before:
+        Color:
+            rgb: (1, 170/255, 23/255, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [22,22,22,0]
+
+
+
+
+
+<ChatScreen>
+    name: "chat_screen"
+    MDFloatLayout:
+        MDFloatLayout:
+            md_bg_color: darkblue
+            size_hint_y: .11
+            pos_hint: {'center_y': .95}
+
+            MDLabel:
+                id: name
+                text: "Nice Guy"
+                font_size: "25sp"
+                theme_text_color: "Custom"
+                text_color: "white"
+                font_name: 'Roboto-Bold'
+                halign: "center"
+                pos_hint: {'center_y': .5}
+            MDIconButton:
+                icon: "chevron-left"
+                icon_size: "50sp"
+                theme_icon_color: "Custom"
+                icon_color: "white"
+                pos_hint: {'top': .99}
+                on_press: root.goto_chat_screen()
+
+        ScrollView:
+            size_hint_y: .77
+            pos_hint: {'x': 0, 'y': .116}
+            do_scroll_x: False
+            do_scroll_y: True
+            BoxLayout:
+                id: chat_list
+                orientation: 'vertical'
+                size: (root.width, root.height)
+                height: self.minimum_height
+                size_hint: None, None
+                pos_hint: {'top': 10}
+                cols: 1
+                spacing: '5dp'
+                # md_bg_color: "green"
+                # SentMessage:
+                #     message: "yo, wassup"
+                #     size_hint_x: .4
+                #     halign: "center"
+                # ReceivedMessage:
+                #     message: "I dey guy"
+                #     size_hint_x: .4
+                #     halign: "center"
+
+
+            # MDFloatLayout:
+            #     size_hint: .85, .8
+            #     pos_hint: {'center_x': .5, 'center_y': .42}
+            #     canvas:
+            #         Color:
+            #             rgb: (238/255, 238/255, 238/255, 1)
+            #         RoundedRectangle:
+            #             size: self.size
+            #             pos: self.pos
+            #             radius: [22,22,22,22]
+
+        MDFloatLayout:
+            size_hint_y: None
+            height: "100dp"
+            # md_bg_color: "red"
+            MDBoxLayout:
+                orientation:'horizontal'
+                MDBoxLayout:
+                    adaptive_height: True
+                    padding: "12dp"
+                    orientation: 'horizontal'
+                    spacing: "8dp"
+                    MDIconButton:
+                        icon: "camera-plus"
+                        theme_icon_color: "Custom"
+                        icon_color: "white"
+                        md_bg_color: darkblue
+                    MDTextField:
+                        id: message_box
+                        hint_text: "Message..."
+                        mode: "fill"
+                        multiline: True
+                        max_height: "150dp"
+                        size_hint_x: .5
+                        hint_text_color_normal: darkblue
+                        hint_text_color_focus: darkblue
+                        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                        line_color_normal: darkblue
+                        line_color_focus: darkblue
+                        text_color_focus: darkblue
+                        text_color_normal: darkblue
+                        input_type: "text"
+                        keyboard_suggestions: True
+                        mode: "fill"
+                        focus: True
+                        on_text_validate: print(search.text)
+                    MDIconButton:
+                        icon: "send"
+                        theme_icon_color: "Custom"
+                        icon_color: "white"
+                        md_bg_color: darkblue
+                        on_press:
+                            root.send()
+                            print(message_box.text)

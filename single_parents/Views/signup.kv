@@ -1,0 +1,135 @@
+
+<SignupScreen>
+    Image:
+        source:"assets/img/logo.png"
+        size_hint_x:.75
+        pos_hint: {'center_x': 0.5,'center_y': 0.85}
+    MDTextField:
+        id: fullname
+        hint_text: "Full name"
+        hint_text_color_focus: darkblue
+        hint_text_color_normal: darkblue
+        text_color_focus: darkblue
+        text_color_normal: darkblue
+        mode: "fill"
+        line_color_normal: darkblue
+        line_color_focus: darkblue
+        size_hint_x: .85
+        icon_right: "account"
+        icon_right_color_normal: darkblue
+        icon_right_color_focus: darkblue
+        pos_hint: {'center_x': 0.5,'center_y': 0.7}
+        focus: True
+        on_text_validate: email.focus = True
+        # on_text: button.disabled= 'True' if not fullname.text or not email.text or not password.text or not kids.text or not gender.text or not phone.text else "False"
+    MDTextField:
+        id: email
+        hint_text: "Email"
+        hint_text_color_focus: darkblue
+        hint_text_color_normal: darkblue
+        text_color_focus: darkblue
+        text_color_normal: darkblue
+        mode: "fill"
+        line_color_normal: darkblue
+        line_color_focus: darkblue
+        size_hint_x: .85
+        icon_right: "email"
+        icon_right_color_normal: darkblue
+        icon_right_color_focus: darkblue
+        pos_hint: {'center_x': 0.5,'center_y': 0.6}
+        on_text_validate: password.focus = True
+        # on_text: button.disabled= 'True' if not fullname.text or not email.text or not password.text or not kids.text or not gender.text or not phone.text else "False"
+    MDTextField:
+        id: password
+        hint_text: "password"
+        hint_text_color_focus: darkblue
+        hint_text_color_normal: darkblue
+        text_color_focus: darkblue
+        text_color_normal: darkblue
+        mode: "fill"
+        line_color_normal: darkblue
+        line_color_focus: darkblue
+        size_hint_x: .85
+        icon_right: "key"
+        icon_right_color_normal: darkblue
+        icon_right_color_focus: darkblue
+        password: True
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+        on_text_validate: kids.focus = True
+        # on_text: button.disabled= 'True' if not fullname.text or not email.text or not password.text or not kids.text or not gender.text or not phone.text else "False"
+    MDTextField:
+        id: kids
+        hint_text: "Number of kids"
+        hint_text_color_focus: darkblue
+        hint_text_color_normal: darkblue
+        text_color_focus: darkblue
+        text_color_normal: darkblue
+        mode: "fill"
+        line_color_normal: darkblue
+        line_color_focus: darkblue
+        size_hint_x: .85
+        icon_right: "baby"
+        icon_right_color_normal: darkblue
+        icon_right_color_focus: darkblue
+        pos_hint: {'center_x': 0.5,'center_y': 0.4}
+        on_text_validate: gender.focus = True
+        # on_text: button.disabled= 'True' if not fullname.text or not email.text or not password.text or not kids.text or not gender.text or not phone.text else "False"
+    MDTextField:
+        id: gender
+        hint_text: "Gender"
+        hint_text_color_focus: darkblue
+        hint_text_color_normal: darkblue
+        helper_text: "male/female"
+        helper_text_color: darkblue
+        text_color_focus: darkblue
+        text_color_normal: darkblue
+        mode: "fill"
+        line_color_normal: darkblue
+        line_color_focus: darkblue
+        size_hint_x: .35
+        icon_right: ""
+        icon_right_color_normal: darkblue
+        icon_right_color_focus: darkblue
+        password: True
+        pos_hint: {'center_x': 0.26,'center_y': 0.3}
+        on_text_validate: phone.focus = True
+        # on_text: button.disabled= 'True' if not fullname.text or not email.text or not password.text or not kids.text or not gender.text or not phone.text else "False"
+    MDTextField:
+        id: phone
+        hint_text: "phone"
+        hint_text_color_focus: darkblue
+        hint_text_color_normal: darkblue
+        helper_text: "+234 7898765456"
+        helper_text_color: darkblue
+        text_color_focus: darkblue
+        text_color_normal: darkblue
+        mode: "fill"
+        line_color_normal: darkblue
+        line_color_focus: darkblue
+        size_hint_x: .45
+        icon_right: "phone"
+        icon_right_color_normal: darkblue
+        icon_right_color_focus: darkblue
+        # password: True
+        pos_hint: {'center_x': 0.72,'center_y': 0.3}
+        # on_text_validate: button.disabled= 'True' if not fullname.text or not email.text or not password.text or not kids.text or not gender.text or not phone.text else "False"
+
+    MDFillRoundFlatButton:
+        id: button
+        text: "Create Account!"
+        pos_hint: {'center_x': 0.5,'center_y': 0.2}
+        size_hint_y: .06
+        size_hint_x: .8
+        md_bg_color: darkblue
+        font_style: "Button"
+        # disabled: 'True'  if not fullname.text or not email.text or not password.text or not kids.text or not gender.text or not phone.text else "False"
+        on_press: root.signup(fullname.text, email.text, password.text, kids.text, gender.text, phone.text)
+    MDFlatButton:
+        text: "Already Part of the family? [u]Login Now![/u]"
+        markup: True
+        pos_hint: {'center_x': 0.5,'center_y': 0.1}
+        size_hint_y: .06
+        size_hint_x: .8
+        # md_bg_color: darkblue
+        font_style: "Body2"
+        on_press: root.manager.current = "login_screen"
